@@ -1,0 +1,79 @@
+{
+  "id": "41d7ad02-0196-40ba-98c8-a394a782b3c4",
+  "alias": "CustomFeedbackWebPart",
+  "componentType": "WebPart",
+  "version": "0.0.1",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": [
+    "SharePointWebPart",
+    "TeamsPersonalApp",
+    "TeamsTab",
+    "SharePointFullPage"
+  ],
+  "supportsThemeVariants": true,
+  "preconfiguredEntries": [
+    {
+      "groupId": "cf066440-0614-43d6-98ae-0b31cf14c7c3",
+      "group": {
+        "default": "Messaging"
+      },
+      "title": {
+        "default": "Feedback Tab"
+      },
+      "description": {
+        "default": "Adds a floating Feedback tab to the page that opens a side panel where visitors can submit comments and star ratings. Responses are saved to a SharePoint list automatically."
+      },
+      "officeFabricIconFontName": "FeedbackRequestSolid",
+      "properties": {
+        "description": "Feedback Tab"
+      }
+    }
+  ],
+  "loaderConfig": {
+    "internalModuleBaseUrls": [
+      "<!-- PATH TO CDN -->"
+    ],
+    "entryModuleId": "custom-feedback-web-part",
+    "scriptResources": {
+      "custom-feedback-web-part": {
+        "type": "path",
+        "path": "custom-feedback-web-part_b61b78571d34954cc7b4.js"
+      },
+      "react": {
+        "type": "component",
+        "id": "0d910c1c-13b9-4e1c-9aa4-b008c5e42d7d",
+        "version": "17.0.1"
+      },
+      "react-dom": {
+        "type": "component",
+        "id": "aa0a46ec-1505-43cd-a44a-93f3a5aa460a",
+        "version": "17.0.1"
+      },
+      "@microsoft/sp-core-library": {
+        "type": "component",
+        "id": "7263c7d0-1d6a-45ec-8d85-d4d1d234171b",
+        "version": "1.20.0"
+      },
+      "@microsoft/sp-property-pane": {
+        "type": "component",
+        "id": "f9e737b7-f0df-4597-ba8c-3060f82380db",
+        "version": "1.20.0"
+      },
+      "@microsoft/sp-webpart-base": {
+        "type": "component",
+        "id": "974a7777-0990-4136-8fa6-95d80114c2e0",
+        "version": "1.20.0"
+      },
+      "CustomFeedbackWebPartStrings": {
+        "type": "path",
+        "path": "CustomFeedbackWebPartStrings_en-us_905b2e0c3215d2788952fd9462762bd4.js"
+      },
+      "@microsoft/sp-http": {
+        "type": "component",
+        "id": "c07208f0-ea3b-4c1a-9965-ac1b825211a6",
+        "version": "1.20.0"
+      }
+    }
+  }
+}

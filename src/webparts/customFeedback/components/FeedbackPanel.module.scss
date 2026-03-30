@@ -1,0 +1,273 @@
+// Feedback tab — fixed to viewport lower-right corner, horizontal orientation
+// font-size, width, and height are set via inline styles from the component
+.feedbackTab {
+  position: fixed;
+  bottom: 168px;
+  right: 24px;
+  z-index: 9000;
+  border-radius: 6px;
+  font-weight: 600;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  &:focus-visible {
+    outline: 2px solid #3c6aa7;
+    outline-offset: 3px;
+  }
+}
+
+// Filled style: solid blue background, white text
+.feedbackTabFilled {
+  background-color: #3c6aa7;
+  color: #ffffff;
+  border: 2px solid #3c6aa7;
+  box-shadow: 0 2px 8px rgba(60, 106, 167, 0.35);
+
+  &:hover {
+    background-color: #2f5a91;
+    border-color: #2f5a91;
+    box-shadow: 0 4px 14px rgba(60, 106, 167, 0.45);
+  }
+
+  &:active {
+    background-color: #244a7a;
+    border-color: #244a7a;
+  }
+
+  &:focus-visible {
+    outline-color: #244a7a;
+  }
+}
+
+// Outlined style: white background, blue border and text
+.feedbackTabOutlined {
+  background-color: #ffffff;
+  color: #3c6aa7;
+  border: 2px solid #3c6aa7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+  &:hover {
+    background-color: #edf2f8;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  }
+
+  &:active {
+    background-color: #d8e4f0;
+  }
+}
+
+// Backdrop overlay
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9001;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Side panel
+.feedbackPanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 380px;
+  max-width: 100vw;
+  background-color: #ffffff;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.18);
+  z-index: 9002;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+
+  &.panelOpen {
+    transform: translateX(0);
+  }
+}
+
+// Panel header bar
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px 12px 4px;
+  border-bottom: 1px solid #edebe9;
+  flex-shrink: 0;
+}
+
+.closeButton {
+  color: #605e5c;
+
+  &:hover {
+    color: #201f1e;
+    background-color: #f3f2f1;
+  }
+}
+
+// Scrollable panel body
+.panelContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 28px 32px;
+}
+
+// Form elements
+.feedbackForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.formTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #201f1e;
+  margin: 0 0 12px;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.3;
+}
+
+.formDescription {
+  font-size: 14px;
+  color: #605e5c;
+  margin: 0 0 20px;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.5;
+}
+
+.questionLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #323130;
+  margin: 0 0 8px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.commentField {
+  margin-bottom: 20px;
+
+  :global(.ms-TextField-fieldGroup) {
+    border-radius: 4px;
+    border-color: #8a8886;
+
+    &:hover {
+      border-color: #3c6aa7;
+    }
+  }
+
+  :global(.ms-TextField-field) {
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    resize: none;
+  }
+}
+
+// Star rating
+.ratingContainer {
+  margin-bottom: 24px;
+}
+
+.starRating {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.starButton {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+  transition: transform 0.1s ease, color 0.1s ease;
+  border-radius: 4px;
+
+  &:focus-visible {
+    outline: 2px solid #3c6aa7;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+
+  &:not(:disabled):hover {
+    transform: scale(1.15);
+  }
+}
+
+.starFilled {
+  color: #f4c430;
+}
+
+.starEmpty {
+  color: #c8c6c4;
+}
+
+// Submit area
+.submitContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 40px;
+}
+
+.submitButton {
+  min-width: 140px;
+}
+
+// Success state
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  text-align: center;
+  gap: 16px;
+}
+
+.successIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #107c10;
+  color: #ffffff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.successMessage {
+  font-size: 16px;
+  font-weight: 600;
+  color: #323130;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.5;
+}
+
+// Responsive: full-width on small screens
+@media (max-width: 420px) {
+  .feedbackPanel {
+    width: 100vw;
+  }
+}

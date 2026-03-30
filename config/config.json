@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "custom-feedback-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/customFeedback/CustomFeedbackWebPart.js",
+          "manifest": "./src/webparts/customFeedback/CustomFeedbackWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "CustomFeedbackWebPartStrings": "lib/webparts/customFeedback/loc/{locale}.js"
+  }
+}

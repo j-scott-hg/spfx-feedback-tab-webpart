@@ -1,0 +1,41 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "Feedback Tab",
+    "id": "4e4273cf-cfb4-4561-80de-4b0811fb8641",
+    "version": "1.0.4.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "iconPath": "images/app-icon.png",
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Adds a floating Feedback tab to any SharePoint modern page."
+      },
+      "longDescription": {
+        "default": "Adds a fixed floating Feedback tab to SharePoint modern pages. Clicking the tab opens a side panel with a configurable feedback form. Responses (comment, star rating, page URL, and submitting user) are saved automatically to a SharePoint list named Feedback Responses."
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "Feedback Tab Feature",
+        "description": "Activates the Feedback Tab web part.",
+        "id": "8dbadeff-266c-4ea2-848a-511552c4a4a9",
+        "version": "1.0.4.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/custom-feedback.sppkg"
+  }
+}

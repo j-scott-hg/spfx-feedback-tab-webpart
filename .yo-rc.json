@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.20.8",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.24.0"
+    },
+    "version": "1.20.0",
+    "libraryName": "custom-feedback",
+    "libraryId": "4e4273cf-cfb4-4561-80de-4b0811fb8641",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "custom-feedback",
+    "solutionShortDescription": "custom-feedback description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
