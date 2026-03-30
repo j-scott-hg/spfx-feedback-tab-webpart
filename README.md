@@ -103,8 +103,8 @@ All of the following are editable in SharePoint edit mode via the web part prope
 ### Run locally (gulp serve)
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/custom-feedback.git
-cd custom-feedback
+git clone https://github.com/j-scott-hg/spfx-feedback-tab-webpart.git
+cd spfx-feedback-tab-webpart
 npm install
 gulp serve
 ```
