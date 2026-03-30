@@ -109,7 +109,7 @@ npm install
 gulp serve
 ```
 
-This opens the hosted SharePoint workbench at `https://harborglobal.sharepoint.com/_layouts/workbench.aspx`. Add the **Feedback Tab** web part from the toolbox to test it.
+This opens the hosted SharePoint workbench at `https://<YOUR-TENANT>.sharepoint.com/_layouts/workbench.aspx`. Add the **Feedback Tab** web part from the toolbox to test it.
 
 ### Deploy to SharePoint
 
@@ -129,7 +129,7 @@ If the list is not auto-created (e.g. the first page load was by a user without 
 
 **Step 1 — Get request digest**
 ```javascript
-const digestResp = await fetch("https://harborglobal.sharepoint.com/sites/YOUR-SITE/_api/contextinfo", {
+const digestResp = await fetch("https://<YOUR-TENANT>.sharepoint.com/sites/YOUR-SITE/_api/contextinfo", {
   method: "POST",
   headers: { "Accept": "application/json;odata=nometadata" },
   credentials: "include"
@@ -140,7 +140,7 @@ const digest = digestData.FormDigestValue;
 
 **Step 2 — Create the list**
 ```javascript
-const siteUrl = "https://harborglobal.sharepoint.com/sites/YOUR-SITE";
+const siteUrl = "https://<YOUR-TENANT>.sharepoint.com/sites/YOUR-SITE";
 await fetch(`${siteUrl}/_api/web/lists`, {
   method: "POST", credentials: "include",
   headers: {
