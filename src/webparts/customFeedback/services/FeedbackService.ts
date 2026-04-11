@@ -13,19 +13,17 @@ export class FeedbackService {
     this.siteUrl = siteUrl;
   }
 
-  private async getRequestDigest(): Promise<string> {
-    const response: SPHttpClientResponse = await this.context.spHttpClient.post(
-      `${this.siteUrl}/_api/contextinfo`,
-      SPHttpClient.configurations.v1,
-      {
-        headers: {
-          'Accept': 'application/json;odata=nometadata',
-          'Content-Type': 'application/json;odata=nometadata'
-        }
-      }
-    );
-    const data = await response.json();
-    return data.FormDigestValue;
+  // SPHttpClient automatically handles the request digest (X-RequestDigest) for
+  // state-changing calls — no manual contextinfo fetch needed in SPFx.
+  private getPostOptions(body: object): { headers: Record<string, string>; body: string } {
+    return {
+      headers: {
+        'Accept': 'application/json;odata=nometadata',
+        'Content-Type': 'application/json;odata=nometadata',
+        'odata-version': ''
+      },
+      body: JSON.stringify(body)
+    };
   }
 
   public async ensureList(): Promise<void> {
@@ -41,7 +39,10 @@ export class FeedbackService {
         `${this.siteUrl}/_api/web/lists/getbytitle('${encodeURIComponent(LIST_NAME)}')`,
         SPHttpClient.configurations.v1,
         {
-          headers: { 'Accept': 'application/json;odata=nometadata' }
+          headers: {
+            'Accept': 'application/json;odata=nometadata',
+            'odata-version': ''
+          }
         }
       );
       return response.ok;
@@ -51,39 +52,25 @@ export class FeedbackService {
   }
 
   private async createList(): Promise<void> {
-    const digest = await this.getRequestDigest();
-
     const createResponse: SPHttpClientResponse = await this.context.spHttpClient.post(
       `${this.siteUrl}/_api/web/lists`,
       SPHttpClient.configurations.v1,
-      {
-        headers: {
-          'Accept': 'application/json;odata=nometadata',
-          'Content-Type': 'application/json;odata=nometadata',
-          'X-RequestDigest': digest
-        },
-        body: JSON.stringify({
-          Title: LIST_NAME,
-          BaseTemplate: 100,
-          Description: 'Stores feedback submitted by users via the Feedback web part.'
-        })
-      }
+      this.getPostOptions({
+        Title: LIST_NAME,
+        BaseTemplate: 100,
+        Description: 'Stores feedback submitted by users via the Feedback Tab web part.'
+      })
     );
 
     if (!createResponse.ok) {
       throw new Error(`Failed to create list: ${createResponse.statusText}`);
     }
 
-    await this.addListColumns(digest);
+    await this.addListColumns();
   }
 
-  private async addListColumns(digest: string): Promise<void> {
+  private async addListColumns(): Promise<void> {
     const baseUrl = `${this.siteUrl}/_api/web/lists/getbytitle('${encodeURIComponent(LIST_NAME)}')/fields`;
-    const headers = {
-      'Accept': 'application/json;odata=nometadata',
-      'Content-Type': 'application/json;odata=nometadata',
-      'X-RequestDigest': digest
-    };
 
     const columns = [
       { FieldTypeKind: 3, Title: 'CommentText', Required: false },
@@ -95,27 +82,19 @@ export class FeedbackService {
     ];
 
     for (const col of columns) {
-      await this.context.spHttpClient.post(baseUrl, SPHttpClient.configurations.v1, {
-        headers,
-        body: JSON.stringify(col)
-      });
+      await this.context.spHttpClient.post(
+        baseUrl,
+        SPHttpClient.configurations.v1,
+        this.getPostOptions(col)
+      );
     }
   }
 
   public async submitFeedback(submission: IFeedbackSubmission): Promise<void> {
-    const digest = await this.getRequestDigest();
-
     const response: SPHttpClientResponse = await this.context.spHttpClient.post(
       `${this.siteUrl}/_api/web/lists/getbytitle('${encodeURIComponent(LIST_NAME)}')/items`,
       SPHttpClient.configurations.v1,
-      {
-        headers: {
-          'Accept': 'application/json;odata=nometadata',
-          'Content-Type': 'application/json;odata=nometadata',
-          'X-RequestDigest': digest
-        },
-        body: JSON.stringify(submission)
-      }
+      this.getPostOptions(submission)
     );
 
     if (!response.ok) {

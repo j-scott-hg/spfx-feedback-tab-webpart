@@ -82,6 +82,7 @@ All of the following are editable in SharePoint edit mode via the web part prope
 
 | Version | Date | Comments |
 | --- | --- | --- |
+| 1.0.6 | April 2026 | Fix feedback submission - remove manual digest fetch, rely on SPFx automatic CSRF handling |
 | 1.0.5 | March 2026 | Fix feedback submission (SPHttpClient import correction) |
 | 1.0.4 | March 2026 | App catalog name, icon, and description polish |
 | 1.0.3 | March 2026 | Custom app catalog icon |
