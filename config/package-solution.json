@@ -3,7 +3,7 @@
   "solution": {
     "name": "Feedback Tab",
     "id": "4e4273cf-cfb4-4561-80de-4b0811fb8641",
-    "version": "1.0.4.0",
+    "version": "1.0.5.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
@@ -31,7 +31,7 @@
         "title": "Feedback Tab Feature",
         "description": "Activates the Feedback Tab web part.",
         "id": "8dbadeff-266c-4ea2-848a-511552c4a4a9",
-        "version": "1.0.4.0"
+        "version": "1.0.5.0"
       }
     ]
   },

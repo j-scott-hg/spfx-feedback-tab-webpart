@@ -82,6 +82,7 @@ All of the following are editable in SharePoint edit mode via the web part prope
 
 | Version | Date | Comments |
 | --- | --- | --- |
+| 1.0.5 | March 2026 | Fix feedback submission (SPHttpClient import correction) |
 | 1.0.4 | March 2026 | App catalog name, icon, and description polish |
 | 1.0.3 | March 2026 | Custom app catalog icon |
 | 1.0.2 | March 2026 | Web part display name and Fluent UI icon |
